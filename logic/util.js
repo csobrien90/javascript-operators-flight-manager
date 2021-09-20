@@ -20,6 +20,7 @@ function Util() {
         arr.forEach(dist => {
             if(dist > 0) {totalDistance += dist};
         })
+        return totalDistance;
     }
 
     return {calculateTotalDistributedPassengers, calculateTotalNumberOfPassengers, checkInput, calculateTotalDistance};
