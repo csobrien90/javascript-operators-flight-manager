@@ -7,17 +7,16 @@ function Flights() {
 
     function checkAircraftRevision(distanceLimit, distancesArray) {
         let totalDistance = distancesArray.reduce((a, b) => a + b);
-        if (totalDistance <= distanceLimit / 2) {
+        if (totalDistance <= (distanceLimit / 2)) {
             return 'The revision needs to be done within the next 3 months';
-        } else if (totalDistance > distanceLimit / 2 && totalDistance <= distanceLimit * .75) {
-            'The revision needs to be done within the next 2 months';
-        } else if (totalDistance > distanceLimit * .75 && totalDistance <= distanceLimit) {
-            'The revision needs to be done within the next month';
+        } else if ((totalDistance > distanceLimit / 2) && (totalDistance <= 3 * distanceLimit / 4)) {
+            return 'The revision needs to be done within the next 2 months';
+        } else if ((totalDistance > 3 * distanceLimit / 4) && (totalDistance <= distanceLimit)) {
+            return 'The revision needs to be done within the next month';
         } else {
-            throw new Error('Total distance cannot exceed distance limit');
+            throw new Error(`Flight maximum distance (${distanceLimit}) exceeded. No flight`);
         }
     }
-
 
     return {calculateNumberOfFlights, checkAircraftRevision};
 }
