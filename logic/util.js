@@ -1,3 +1,5 @@
+"use strict";
+
 function Util() {
     function calculateTotalDistributedPassengers(seatingObject) {
         let total = 0;
@@ -23,7 +25,13 @@ function Util() {
         return totalDistance;
     }
 
-    return {calculateTotalDistributedPassengers, calculateTotalNumberOfPassengers, checkInput, calculateTotalDistance};
+    function calculateBonusPoints(businessDistancesArray, economyDistancesArray, businessBonus, economyBonus) {
+        let businessPoints = calculateTotalDistance(businessDistancesArray) * (businessBonus / 100);
+        let economyPoints = calculateTotalDistance(economyDistancesArray) * (economyBonus / 100);
+        return businessPoints + economyPoints;
+    }
+
+    return {calculateTotalDistributedPassengers, calculateTotalNumberOfPassengers, checkInput, calculateTotalDistance, calculateBonusPoints};
 }
 
 module.exports = Util();

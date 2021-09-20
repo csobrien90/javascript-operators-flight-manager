@@ -1,3 +1,5 @@
+"use strict";
+
 function Flights() {
     function calculateNumberOfFlights(passengers, capacity) {
         if ((passengers < 0) || (!Number.isInteger(Number(passengers)))) {throw new Error('The number of passengers must be a positive integer value')};

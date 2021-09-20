@@ -1,3 +1,5 @@
+"use strict";
+
 function Prices() {
     function calculateFinalPrice(basePrice, variationPassengerType, variationFlightType) {
         let finalPrice = basePrice;
