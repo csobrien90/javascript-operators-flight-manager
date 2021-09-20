@@ -11,8 +11,12 @@ function Util() {
         return arr.reduce((a, b) => a + b);
     }
 
+    function checkInput(input) {
+        if(!input || isNaN(input)) {throw new Error('input must be a number and non empty')}
+    }
 
-    return {calculateTotalDistributedPassengers, calculateTotalNumberOfPassengers};
+
+    return {calculateTotalDistributedPassengers, calculateTotalNumberOfPassengers, checkInput};
 }
 
 module.exports = Util();
