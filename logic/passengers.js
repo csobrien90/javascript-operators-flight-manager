@@ -18,10 +18,8 @@ function Passengers() {
 
         let totalBusinessSeats = flights * businessSeatsPerFlight;
         let totalEconomySeats = flights * economySeatsPerFlight;
-
-        if (totalBusinessSeats === vipPassengers) { //exactly the right number of VIP seats
-            seatingObject.businessVips = vipPassengers;
-        } else if (totalBusinessSeats > vipPassengers) { //there are more than enough seats for VIPs
+        
+        if (totalBusinessSeats >= vipPassengers) { //there are exactly enough or more than enough business seats for VIPs
             seatingObject.businessVips = vipPassengers;
             totalBusinessSeats -= vipPassengers;
             if (totalBusinessSeats >= regularPassengers) { //enough or more than enough business seats for regs
@@ -31,17 +29,15 @@ function Passengers() {
                 regularPassengers -= totalBusinessSeats;
                 seatingObject.economyRegs = Math.min(totalEconomySeats, regularPassengers);
             }
-        } else { //not enough seats for VIPs
+        } else { //not enough business seats for VIPs
             seatingObject.businessVips = totalBusinessSeats;
             vipPassengers -= totalBusinessSeats;
-            if (vipPassengers === totalEconomySeats) { //exactly enough seats for remainder of VIPs
-                seatingObject.economyVips = vipPassengers;
-                totalEconomySeats = 0;
-            } else if (vipPassengers > totalEconomySeats) { //more VIPs than economy seats
+            if (vipPassengers >= totalEconomySeats) { //more VIPs than economy seats or exactly the amount
                 seatingObject.economyVips = totalEconomySeats;
             } else { //more economy seats than VIPs
                 seatingObject.economyVips = vipPassengers;
                 totalEconomySeats -= vipPassengers;
+                seatingObject.economyRegs = Math.min(totalEconomySeats, regularPassengers);
             }
          }
 
